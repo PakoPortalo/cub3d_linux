@@ -6,7 +6,7 @@
 /*   By: tamagotchi <tamagotchi@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 10:18:04 by fportalo          #+#    #+#             */
-/*   Updated: 2020/12/02 08:37:58 by tamagotchi       ###   ########.fr       */
+/*   Updated: 2020/12/02 17:42:35 by tamagotchi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,28 @@
 
 int	find_origin(mapstr *raw)
 {
+	int i;
+
+	i = 0;
 	while (raw->x < (int)ft_strlen(raw->map[raw->y]) && raw->y < (raw->rows - 1)) // NO FUNCIONA EL CASO DE QUE HAYAN 2 PUNTOS
 	{
+		
 		while (raw->map[raw->y][raw->x])
 		{
-			if (ft_strchr("NSWE", raw->map[raw->y][raw->x]))
-				break;
+			printf("%c\n", raw->map[raw->y][raw->x]);
+			if ((ft_strchr("NSWE", raw->map[raw->y][raw->x])))
+				i++;
 			raw->x++;
 		}
-		if (raw->map[raw->y][raw->x] == 'N')
-			return (1);
-		if (raw->map[raw->y][raw->x] == 'S')
-			return (1);
-		if (raw->map[raw->y][raw->x] == 'W')
-			return (1);
-		if (raw->map[raw->y][raw->x] == 'E')
-			return (1);
 		raw->y++;
 		raw->x = 0;
 	}
+	if (i = 0)
 		printf("Error. There is no player. Map need an origin point (N, S, W, E)\n");
 		return (-1);
+	if (i > 1)
+		return (-1);
+	if (i = 1) 
 }
 
 int		flood_fill(mapstr *raw, int x, int y)
@@ -57,10 +58,11 @@ int		flood_fill(mapstr *raw, int x, int y)
 
 int		check_map(mapstr *raw, mapclean *map)
 {
-	map->w = 1000;
+	(void)map;
 	if (find_origin(raw) == -1)
 		return (-1);
-	if (flood_fill(raw, raw->x, raw->y) == -1)
-		return (-1);
+	// if (flood_fill(raw, raw->x, raw->y) == -1)
+	// 	return (-1);
+	printf("%dx, %dy\n", raw->x, raw->y);
 	return (1);
 }
