@@ -1,2 +1,2 @@
-# cub3d_linux
-Cub3d para trabajar desde casa
+# cub3d
+me siento el Steve Jobs de mi familia
